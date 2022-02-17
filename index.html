@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGBA Generator 2022</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: 'Montserrat';
+            padding: 0;
+            margin: 0;
+            outline: 0;
+            appearance: none;
+            border: 0;
+            box-sizing: border-box; 
+            list-style: none;
+            text-decoration: none;}
+        html,body{width: 100%;height: 100%;}
+        
+        #dp,.s1,.a1,.a1 div{flex-direction: column;
+            display: flex;align-items: center;justify-content: center;}
+        #dp{
+            background-color: #fff;
+            width: 100%;height: 100%;}
+        .s1{
+            box-shadow:  20px 20px 60px #d9d9d9,
+            -20px -20px 60px #ffffff;
+            overflow: hidden;
+            border-radius: 40px;}
+            
+        #a1{
+            padding: 105px 0;
+            background-color: #fff;
+            font-size: 1.2rem;font-weight: bold;
+            width: 300px;height: 150px;}
+        .a1 div{
+            margin-bottom: 5px;
+            flex-direction: row;}
+        .a2{
+            cursor: pointer;
+            width: 100%;
+            background-color: rgb(246,246,246);
+            border-radius: 0 0 40px 40px;
+            font-size: 1.1rem;font-weight: bold;
+            color: var(--clr);text-align: center;
+            margin: auto;padding: 30px 0;}
+
+        .a1 input{
+            margin-left: 10px;
+            border-radius: 20px;
+            height: 5px; width: 180px;
+            background-color:rgb(235, 235, 235);}
+    </style>
+</head>
+<body>
+    <main id="dp">
+        <section class="s1" id="s1">
+            <article class="a1" id="a1">
+                <div>R :<input oninput="clr()" min="0" max="255" value="0" step="1" type="range" name="r" id="clr-r"></div>
+                <div>G :<input oninput="clr()" min="0" max="255" value="0" step="1" type="range" name="g" id="clr-g"></div>
+                <div>B :<input oninput="clr()" min="0" max="255" value="0" step="1" type="range" name="b" id="clr-b"></div>
+                <div>A :<input oninput="clr()" min="0" max="1" value="0.5" step="0.001" type="range" name="b" id="clr-a"></div>
+            </article>
+            <article class="a2 color-code" id="color-code" onclick="copy()">Choose Color!</article>
+        </section>
+    </main>
+    <script type="text/javascript">
+        const cc = document.getElementById("color-code");
+        const dp = document.getElementById("dp");
+        const s1 = document.getElementById("s1");
+        const a1 = document.getElementById("a1");
+        
+        function clr(){
+            let r = document.getElementById('clr-r').value;
+            let g = document.getElementById('clr-g').value;
+            let b = document.getElementById('clr-b').value;
+            let a = document.getElementById('clr-a').value;
+            cc.innerHTML = `RGBA (${r}, ${g}, ${b}, ${a})`;
+            // dp.style.backgroundColor = `rgb(248,248,248)`;
+            a1.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+            // s1.style.boxShadow = `10px 10px 50px rgba(${r-60}, ${g-60}, ${b-90}, 0.2)`;
+        }
+        
+        function copy(){
+            navigator.clipboard.writeText(cc.innerText).then(function(){alert( cc.innerText + " is copied!")});
+        }
+    </script>
+</body>
+</html>
